@@ -1,11 +1,17 @@
 import React from 'react';
 import moment from 'moment';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { TimeTravel } from 'weaveworks-ui-components';
 
 import { trackAnalyticsEvent } from '../utils/tracking-utils';
 import { jumpToTime } from '../actions/app-actions';
 
+
+const TimeTravelContainer = styled.div`
+  margin-top: -5px;
+  margin-bottom: 15px;
+`;
 
 class TimeTravelWrapper extends React.Component {
   constructor(props, context) {
@@ -59,16 +65,18 @@ class TimeTravelWrapper extends React.Component {
     const { visible, timestamp } = this.props;
 
     return (
-      <TimeTravel
-        visible={visible}
-        timestamp={timestamp}
-        earliestTimestamp={this.props.earliestTimestamp}
-        onChangeTimestamp={this.changeTimestamp}
-        onTimestampInputEdit={this.trackTimestampEdit}
-        onTimestampLabelClick={this.trackTimelineClick}
-        onTimelineZoom={this.trackTimelineZoom}
-        onTimelinePan={this.trackTimelinePan}
-      />
+      <TimeTravelContainer>
+        <TimeTravel
+          visible={visible}
+          timestamp={timestamp}
+          earliestTimestamp={this.props.earliestTimestamp}
+          onChangeTimestamp={this.changeTimestamp}
+          onTimestampInputEdit={this.trackTimestampEdit}
+          onTimestampLabelClick={this.trackTimelineClick}
+          onTimelineZoom={this.trackTimelineZoom}
+          onTimelinePan={this.trackTimelinePan}
+        />
+      </TimeTravelContainer>
     );
   }
 }
